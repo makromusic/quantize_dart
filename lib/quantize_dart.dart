@@ -117,7 +117,7 @@ class VBox {
   int g2;
   int b1;
   int b2;
-  Map<int, int?> histo = {};
+  List<int?> histo = [];
 
   VBox(
     this.r1,
@@ -229,11 +229,10 @@ class CMap {
   PQueue<VBoxElement> vboxes;
 
   CMap()
-      :
-    this.vboxes = PQueue((a, b) {
-      return _PV.naturalOrder(a.vbox.count() * a.vbox.volume(),
+      : this.vboxes = PQueue((a, b) {
+          return _PV.naturalOrder(a.vbox.count() * a.vbox.volume(),
               b.vbox.count() * b.vbox.volume());
-    });
+        });
 
   void push(VBox vbox) {
     this.vboxes.push(VBoxElement(vbox, vbox.avg()));
@@ -300,10 +299,7 @@ List<int?> _getHisto(List pixels) {
   int histosize = 1 << 3 * _sigbits;
   List<int?> histo = List<int?>.filled(histosize, null);
 
-  int index,
-      rval,
-      gval,
-      bval;
+  int index, rval, gval, bval;
 
   pixels.forEach((pixel) {
     rval = pixel[0] >> _rshift;
